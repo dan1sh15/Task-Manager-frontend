@@ -23,7 +23,6 @@ const Home = () => {
     const [editTask, setEditTask] = useState({});
     const [id, setId] = useState("");
     const navigate = useNavigate();
-
     const getDate = (date) => {
         const newDate = new Date(date);
 
