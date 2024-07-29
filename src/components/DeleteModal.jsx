@@ -6,6 +6,7 @@ const DeleteModal = ({ showDelete, setShowDelete, id }) => {
 
     const { setLoading, fetchTasks, darkMode } = useContext(AppContext);
     const submitHandler = async () => { 
+        setShowDelete(false);
         setLoading(true);
         const url = process.env.REACT_APP_BACKEND_URL + `/deleteTask/${id}`;
         const response = await fetch(url, {
@@ -17,12 +18,10 @@ const DeleteModal = ({ showDelete, setShowDelete, id }) => {
         const responseData = await response.json();
         
         if(responseData.success) {
-            setShowDelete(false);
             await fetchTasks();
             toast.success(responseData.message);
             setLoading(false);
         } else {
-            setShowDelete(false);
             setLoading(false);
             toast.error(responseData.message);
         }

@@ -21,6 +21,7 @@ const TaskModal = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        setShowModal(false);
         setLoading(true);
         const url = process.env.REACT_APP_BACKEND_URL + '/createTask';
         const response = await fetch(url, {
@@ -35,12 +36,10 @@ const TaskModal = () => {
         const responseData = await response.json();
 
         if(responseData.success) {
-            setShowModal(false);
             setLoading(false);
             toast.success(responseData.message);
             await fetchTasks();
         } else {
-            setShowModal(false);
             setLoading(false);
             toast.error(responseData.message);
         }

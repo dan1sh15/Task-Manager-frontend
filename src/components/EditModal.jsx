@@ -22,6 +22,7 @@ const EditModal = ({ setShowEditModal, editTask, setEditTask, showEditModal }) =
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        setShowEditModal(false);
         setLoading(true);
         const url = process.env.REACT_APP_BACKEND_URL + `/editTask/${editTask._id}`
         const response = await fetch(url, {
@@ -35,7 +36,6 @@ const EditModal = ({ setShowEditModal, editTask, setEditTask, showEditModal }) =
         const responseData = await response.json();
 
         if(responseData.success) {
-            setShowEditModal(false);
             setLoading(false);
             await fetchTasks();
             toast.success(responseData.message);
