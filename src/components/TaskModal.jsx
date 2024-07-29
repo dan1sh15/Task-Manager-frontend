@@ -35,10 +35,12 @@ const TaskModal = () => {
         const responseData = await response.json();
 
         if(responseData.success) {
+            setShowModal(false);
             setLoading(false);
             toast.success(responseData.message);
             await fetchTasks();
         } else {
+            setShowModal(false);
             setLoading(false);
             toast.error(responseData.message);
         }
@@ -49,7 +51,6 @@ const TaskModal = () => {
             deadline: "",
             description: "",
         })
-        setShowModal(false);
     }
 
   return (
